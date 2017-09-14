@@ -45,6 +45,19 @@
             border: none;
             background: none;
         }
+	    
+	button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
 
         input[type=checkbox].glyphicon {
             visibility: hidden;
@@ -118,14 +131,15 @@
                                 + data.Address2 + ", " +
                                 data.Town + " " + data.PPostcode
                                 + '<br><br><b>Ph. No: </b>' + data.Phone + "<br><br>" +
-                                "<b>Website:</b> <a href='" + data.web + "'>" + data.web + "</a><br><br>"
-                                + "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
+                                 
+                                "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
                                 "<b>Buildings: </b>" + getBuildingsIcon(data) + "<br>" +
-                                "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>"
-                                + "<b>Average Annual Investment: </b> " + getInvestIcon(data) + "<br>"
-                                + "<h4>Special Programs:</h4>" + 
+                                "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>" + 
+                                "<b>Average Annual Investment: </b> " + getInvestIcon(data) + "<br>" + 
+                                "<h4>Special Programs:</h4>" + 
                                 "<b>LGBT Support:</b> " + isLGBT(data) + "<br>" +
-                                "<b>ASPE Support:</b> " + isASPE(data)
+                                "<b>ASPE Support:</b> " + isASPE(data) + "<br>" +
+                                "<b><a href='" + data.web + "'><button>Website</button></a>"
                             $(".favDel").on('click', function (del) {
                                 let id = del.target.id
                                 let cards = $(".card")
