@@ -112,19 +112,20 @@
                                 "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 card' id=" + i + "> " +
                                 "<button class='favDel glyphicon glyphicon-remove' type='checkbox' id=" + i +
                                 "></button>" +
-                                "<h4>" + data.School_Name + "</h4>" +
-                                "<b>Sector:</b> " + data.Sector + "<br>" +
+                                "<h4 style='text-align:center; color:black; font-weight:bold; border-style:outset'>" + data.School_Name + "</h4>" +
+                                "<b>Sector:</b> " + data.Sector + "<br><br>" +
                                 '<b>Address: </b>' + data.Address1
-                                + data.Address2 + ",<br> " +
+                                + data.Address2 + ", " +
                                 data.Town + " " + data.PPostcode
-                                + '<br><b>Ph. No: </b>' + data.Phone + "<br>" +
-                                "<b>Website:</b> <a href='" + data.web + "'>" + data.web + "</a><br>"
+                                + '<br><br><b>Ph. No: </b>' + data.Phone + "<br><br>" +
+                                "<b>Website:</b> <a href='" + data.web + "'>" + data.web + "</a><br><br>"
                                 + "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
                                 "<b>Buildings: </b>" + getBuildingsIcon(data) + "<br>" +
                                 "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>"
                                 + "<b>Average Annual Investment: </b> " + getInvestIcon(data) + "<br>"
-                                + "<br><h4>Special Programs:</h4>" + isLGBT(data) + isASPE(data) + isNone(data)
-
+                                + "<h4>Special Programs:</h4>" + 
+                                "<b>LGBT Support:</b> " + isLGBT(data) + "<br>" +
+                                "<b>ASPE Support:</b> " + isASPE(data)
                             $(".favDel").on('click', function (del) {
                                 let id = del.target.id
                                 let cards = $(".card")
@@ -144,145 +145,148 @@
 
             let isLGBT = (props) => {
                 if (props.LGBT == "Y") {
-                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-LGBT Flag-48.png' height='30'> Safe Schools (LGBTA support) <br>";
+                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Tick-26.png' height='20'> Yes <br>";
                 }
                 else {
-                    return ""
+                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Multiply-26.png' height='20'> No <br>";
                 }
             }
 
 
             function getStudentsIcon(props) {
+let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'>";
                 if (props.Total > 1) {
                     if (parseInt(props.Total) > 0 & parseInt(props.Total) < 615) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'>    (" + parseInt(props.Total) + ")" +
+                        return StudentIcon + "    (" + parseInt(props.Total) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.Total) >= 615 & parseInt(props.Total) < 1230) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'>    (" + parseInt(props.Total) + ")" +
+                        return StudentIcon + StudentIcon + "    (" + parseInt(props.Total) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.Total) >= 1230 & parseInt(props.Total) < 1845) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'>    (" + parseInt(props.Total) + ")" +
+                        return StudentIcon + StudentIcon + StudentIcon + "    (" + parseInt(props.Total) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.Total) >= 1845 & parseInt(props.Total) < 2460) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'>    (" + parseInt(props.Total) + ")" +
+                        return StudentIcon + StudentIcon + StudentIcon + StudentIcon + "    (" + parseInt(props.Total) + ")" +
                             "<br>";
                     }
                     else {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'>    (" + parseInt(props.Total) + ")" +
+                        return StudentIcon + StudentIcon + StudentIcon + StudentIcon + StudentIcon + "    (" + parseInt(props.Total) + ")" +
                             "<br>";
                     }
                 }
                 else {
-                    return "Not Available"
+                    return "Not Available <br>"
                 }
             }
 
             function getBuildingsIcon(props) {
+			let BuildingsIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'>";
                 if (props.BuildingNumber > 1) {
                     if (parseInt(props.BuildingNumber) > 0 & parseInt(props.BuildingNumber) < 17) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'>    (" + parseInt(props.BuildingNumber) + ")" +
+                        return BuildingsIcon + "    (" + parseInt(props.BuildingNumber) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.BuildingNumber) >= 17 & parseInt(props.BuildingNumber) < 34) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'>    (" + parseInt(props.BuildingNumber) + ")" +
+                        return BuildingsIcon + BuildingsIcon + "    (" + parseInt(props.BuildingNumber) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.BuildingNumber) >= 34 & parseInt(props.BuildingNumber) < 51) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'>    (" + parseInt(props.BuildingNumber) + ")" +
+                        return BuildingsIcon + BuildingsIcon + BuildingsIcon + "    (" + parseInt(props.BuildingNumber) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.BuildingNumber) >= 51 & parseInt(props.BuildingNumber) < 68) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'>    (" + parseInt(props.BuildingNumber) + ")" +
+                        return BuildingsIcon + BuildingsIcon + BuildingsIcon + BuildingsIcon + "    (" + parseInt(props.BuildingNumber) + ")" +
                             "<br>";
                     }
                     else {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'>    (" + parseInt(props.BuildingNumber) + ")" +
+                        return BuildingsIcon + BuildingsIcon + BuildingsIcon + BuildingsIcon + BuildingsIcon + "    (" + parseInt(props.BuildingNumber) + ")" +
                             "<br>";
                     }
                 }
                 else {
-                    return "Not Available"
+                    return "Not Available <br>"
                 }
             }
 
-
             function getFloorAreaIcon(props) {
+			let FloorAreaIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'>";
                 if (props.FloorArea > 1) {
                     if (parseInt(props.FloorArea) > 0 & parseInt(props.FloorArea) < 5156) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'>    (" + parseInt(props.FloorArea) + ")" +
+                        return FloorAreaIcon + "    (" + parseInt(props.FloorArea) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.FloorArea) >= 5156 & parseInt(props.FloorArea) < 10312) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'>    (" + parseInt(props.FloorArea) + ")" +
+                        return FloorAreaIcon + FloorAreaIcon + "    (" + parseInt(props.FloorArea) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.FloorArea) >= 10312 & parseInt(props.FloorArea) < 15486) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'>    (" + parseInt(props.FloorArea) + ")" +
+                        return FloorAreaIcon + FloorAreaIcon + FloorAreaIcon + "    (" + parseInt(props.FloorArea) + ")" +
                             "<br>";
                     }
                     else if (parseInt(props.FloorArea) >= 15486 & parseInt(props.FloorArea) < 20624) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'>    (" + parseInt(props.FloorArea) + ")" +
+                        return FloorAreaIcon + FloorAreaIcon + FloorAreaIcon + FloorAreaIcon + "    (" + parseInt(props.FloorArea) + ")" +
                             "<br>";
                     }
                     else {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'>    (" + parseInt(props.FloorArea) + ")" +
+                        return FloorAreaIcon + FloorAreaIcon + FloorAreaIcon + FloorAreaIcon + FloorAreaIcon + "    (" + parseInt(props.FloorArea) + ")" +
                             "<br>";
                     }
                 }
                 else {
-                    return "Not Available"
+                    return "Not Available <br>"
                 }
             }
 
             function getInvestIcon(props) {
+			let InvestIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'>";
                 if (parseInt(props.Investment) > 1) {
                     if (parseInt(props.Investment) > 0 & parseInt(props.Investment) < 2030218) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'>    (" + parseInt(props.Investment) + ")" +
+                        return InvestIcon + "    (" + props.Investment + ")" +
                             "<br>";
                     }
-                    else if (parseInt(props.Investment) >= 2030218 & parseInt(props.Investment) < 4060436) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'>    (" + parseInt(props.Investment) + ")" +
+                    else if (props.Investment >= 2030218 & props.Investment < 4060436) {
+                        return InvestIcon + InvestIcon + "    (" + props.Investment + ")" +
                             "<br>";
                     }
-                    else if (parseInt(props.Investment) >= 4060436 & parseInt(props.Investment) < 6090654) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'>    (" + parseInt(props.Investment) + ")" +
+                    else if (props.Investment >= 4060436 & props.Investment < 6090654) {
+                        return InvestIcon + InvestIcon + InvestIcon + "    (" + props.Investment + ")" +
                             "<br>";
                     }
-                    else if (parseInt(props.Investment) >= 6090654 & parseInt(props.Investment) < 8120872) {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'>    (" + parseInt(props.Investment) + ")" +
+                    else if (props.Investment >= 6090654 & props.Investment < 8120872) {
+                        return InvestIcon + InvestIcon + InvestIcon + InvestIcon + "    (" + props.Investment + ")" +
                             "<br>";
                     }
                     else {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'><img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'>    (" + parseInt(props.Investment) + ")" +
+                        return InvestIcon + InvestIcon + InvestIcon + InvestIcon + InvestIcon + "    (" + props.Investment + ")" +
                             "<br>";
                     }
                 }
                 else {
-                    return "Not Available"
+                    return "Not Available <br>"
                 }
             }
 
                 function isASPE(props) {
                     if (props.AS_Phys == "Y") {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Exercise-48.png' height='30'> After-school Physical Activity <br>";
+                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Tick-26.png' height='20'> Yes <br>";
                     } else {
-                        return ""
+                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Multiply-26.png' height='20'> No <br>";
                     }
 
                 }
 
-                function isNone(props) {
-                    if (!props.LGBT && props.AS_Phys == "N") {
-                        return "None Available"
-                    } else {
-                        return ""
-                    }
-                }
-
-
+//                function isNone(props) {
+//                 if (!props.LGBT && props.AS_Phys == "N") {
+//                        return "None Available"
+//                    } else {
+//                        return ""
+//                    }
+//                }
+//
+//
 //					for(var i = 0;i < mydata.length; i++)
 //					{
 //					for(j in passdata)
