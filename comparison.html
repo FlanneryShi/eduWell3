@@ -45,8 +45,8 @@
             border: none;
             background: none;
         }
-	    
-	button {
+
+        button {
             border: none;
             outline: 0;
             display: inline-block;
@@ -159,16 +159,16 @@
 
             let isLGBT = (props) => {
                 if (props.LGBT == "Y") {
-                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Tick-26.png' height='20'> Yes <br>";
+                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Tick-26.png' height='19'> Yes <br>";
                 }
                 else {
-                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Multiply-26.png' height='20'> No <br>";
+                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Multiply-26.png' height='19'> No <br>";
                 }
             }
 
 
             function getStudentsIcon(props) {
-let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='20'>";
+let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='19'>";
                 if (props.Total > 1) {
                     if (parseInt(props.Total) > 0 & parseInt(props.Total) < 615) {
                         return StudentIcon + "    (" + parseInt(props.Total) + ")" +
@@ -197,7 +197,7 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
             }
 
             function getBuildingsIcon(props) {
-			let BuildingsIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='20'>";
+			let BuildingsIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='19'>";
                 if (props.BuildingNumber > 1) {
                     if (parseInt(props.BuildingNumber) > 0 & parseInt(props.BuildingNumber) < 17) {
                         return BuildingsIcon + "    (" + parseInt(props.BuildingNumber) + ")" +
@@ -226,7 +226,7 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
             }
 
             function getFloorAreaIcon(props) {
-			let FloorAreaIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='20'>";
+			let FloorAreaIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='19'>";
                 if (props.FloorArea > 1) {
                     if (parseInt(props.FloorArea) > 0 & parseInt(props.FloorArea) < 5156) {
                         return FloorAreaIcon + "    (" + parseInt(props.FloorArea) + ")" +
@@ -255,7 +255,7 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
             }
 
             function getInvestIcon(props) {
-			let InvestIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='20'>";
+			let InvestIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='19'>";
                 if (parseInt(props.Investment) > 1) {
                     if (parseInt(props.Investment) > 0 & parseInt(props.Investment) < 2030218) {
                         return InvestIcon + "    (" + props.Investment + ")" +
@@ -285,9 +285,9 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
 
                 function isASPE(props) {
                     if (props.AS_Phys == "Y") {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Tick-26.png' height='20'> Yes <br>";
+                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Tick-26.png' height='19'> Yes <br>";
                     } else {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Multiply-26.png' height='20'> No <br>";
+                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Multiply-26.png' height='19'> No <br>";
                     }
 
                 }
