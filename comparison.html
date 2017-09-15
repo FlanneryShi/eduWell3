@@ -127,11 +127,6 @@
                                 "></button>" +
                                 "<h4 style='text-align:center; font-size:18pt !important; color:black; font-weight:bold; border-style:outset'>" + data.School_Name + "</h4>" +
                                 "<br><b>Sector:</b> " + data.Sector + "<br><br>" +
-                                '<b>Address: </b>' + data.Address1
-                                + data.Address2 + ", " +
-                                data.Town + " " + data.PPostcode
-                                + '<br><br><b>Ph. No: </b>' + data.Phone + "<br><br>" +
-                                 
                                 "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
                                 "<b>Buildings: </b>" + getBuildingsIcon(data) + "<br>" +
                                 "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>" + 
@@ -139,7 +134,12 @@
                                 "<h4>Special Programs:</h4>" + 
                                 "<b>LGBT Support:</b> " + isLGBT(data) + "<br>" +
                                 "<b>ASPE Support:</b> " + isASPE(data) + "<br>" +
-                                "<b><a href='" + data.web + "'><button>Website</button></a>"
+                                "<p style='text-align:center; font-style:italic'>" + data.Address1
+                                + data.Address2 + ", " +
+                                data.Town + " " + data.PPostcode
+                                + '<br>' + data.Phone + "<br><br>" +
+                                 
+                                "<b><a href='" + data.web + "'><button>More Information</button></a>"
                             $(".favDel").on('click', function (del) {
                                 let id = del.target.id
                                 let cards = $(".card")
