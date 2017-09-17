@@ -203,6 +203,11 @@
                                     "<h4 style='text-align:center; height:50px; font-size:18pt !important; color:black; font-weight:bold;'>" + data.School_Name + "</h4>" +
                                     "<br><b>Sector:</b> " + data.Sector + "<br><br>" +
                                     "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
+                                    "<h4>Gender Balance:</h4>" +
+                                    "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Boy-48.png' height='30'>" +
+                                    "<b> Male:</b>" + data.Male + "    (" + parseFloat(Math.round(data.Male/(data.Male+data.Female) * 100) ).toFixed(2) + "%)" + "<br>" +
+                                    "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Girl-64.png' height='30'>" +
+                                    "<b>Female:</b>" + data.Female + "  (" + parseFloat(Math.round(data.Female/(data.Male+data.Female) * 100) ).toFixed(2) + "%)" + "<br><br>" +
                                     "<b>Buildings: </b>" + getBuildingsIcon(data) + "<br>" +
                                     "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>" +
                                     "<b>Average Annual Investment <img style='height:18px' src='http://www.eduwell.ga/EduWell/icons/icons8-About-26.png' title='Investments for capital and  maintenance works, &#013;parent contributions received in advance for &#013;curriculum and camps, school specific programs&#013;and on behalf of the school community.' /> : </b> " + getInvestIcon(data) + "<br>" +
@@ -211,11 +216,6 @@
                                     "<b>Safe Schools (LGBT Support):</b> " + isLGBT(data) + "<br>" +
                                     "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Exercise-48.png' height='30'>" +
                                     "<b>ASPE Support:</b> " + isASPE(data) + "<br>" +
-                                    "<h4>Gender Balance:</h4>" +
-                                    "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Boy-48.png' height='30'>" +
-                                    "<b> Male:</b>" + data.Male + "    (" + parseFloat(Math.round(data.Male/(data.Male+data.Female) * 100) ).toFixed(2) + "%)" + "<br>" +
-                                    "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Girl-64.png' height='30'>" +
-                                    "<b>Female:</b>" + data.Female + "  (" + parseFloat(Math.round(data.Female/(data.Male+data.Female) * 100) ).toFixed(2) + "%)" + "<br><br>" +
                                     "<p style='text-align:center; font-style:italic'>" + data.Address1
                                     + data.Address2 + ", " +
                                     data.Town + " " + data.PPostcode
@@ -396,7 +396,6 @@
 //					}
 //					}
 //					}
-        
 
 }	
 
