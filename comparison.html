@@ -36,7 +36,7 @@
             margin: 15px;
             padding-top: 40px;
             overflow: auto;
-            height: 670px;
+            height: 700px;
         }
 
         .favDel {
@@ -123,7 +123,10 @@
     <!--<script type="text/javascript" src="data/schoolList.json" async></script>-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8_Lkt5jSWuogp6GB4IKivTDBzVhVmf8Y&libraries=places"
             async defer type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
         function load() {
 
             let element = document.getElementById('data');
@@ -208,12 +211,17 @@
                                     "<b>Safe Schools (LGBT Support):</b> " + isLGBT(data) + "<br>" +
                                     "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Exercise-48.png' height='30'>" +
                                     "<b>ASPE Support:</b> " + isASPE(data) + "<br>" +
+                                    "<h4>Gender Balance:</h4>" +
+                                    "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Boy-48.png' height='30'>" +
+                                    "<b> Male:</b>" + data.Male + "    (" + parseFloat(Math.round(data.Male/(data.Male+data.Female) * 100) ).toFixed(2) + "%)" + "<br>" +
+                                    "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Girl-64.png' height='30'>" +
+                                    "<b>Female:</b>" + data.Female + "  (" + parseFloat(Math.round(data.Female/(data.Male+data.Female) * 100) ).toFixed(2) + "%)" + "<br><br>" +
                                     "<p style='text-align:center; font-style:italic'>" + data.Address1
                                     + data.Address2 + ", " +
                                     data.Town + " " + data.PPostcode
                                     + '<br>' + data.Phone + "<br><br>" +
 
-                                    "<b><a href='" + data.web + "'><button class='infobutton eduwellButton'>More Information</button></a>"
+                                    "<b><a href='" + data['New.web'] + "'><button class='infobutton eduwellButton'>More Information</button></a>"
                                 $(".favDel").on('click', function (del) {
                                     let id = del.target.id
                                     let cards = $(".card")
@@ -388,7 +396,32 @@
 //					}
 //					}
 //					}
-        }	
+        
+
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+
+}	
+
+	
     </script>
 </section>
 
