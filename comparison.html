@@ -12,8 +12,7 @@
 
     <style>
         .content1 {
-            position: fixed;
-            top: 62px;
+            position: relative;
             bottom: 0px;
             left: 0px;
             right: 0px;
@@ -32,35 +31,46 @@
         .card {
             background: #FFF;
             border: 1px solid #AAA;
-            border-bottom: 3px solid #BBB;
+            /*border-bottom: 3px solid #BBB;*/
             padding: 10px;
             margin: 15px;
+            padding-top: 40px;
             overflow: auto;
-            min-height: 400px;
+            height: 670px;
         }
 
         .favDel {
             height: 15px;
-            float: right;
+            right: 0;
             border: none;
             background: none;
+            color: grey;
+            position: absolute;
+            width: auto;
         }
 
-        button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-        }
+        /*button {*/
+            /*border: none;*/
+            /*outline: 0;*/
+            /*display: inline-block;*/
+            /*padding: 8px;*/
+            /*color: white;*/
+            /*background-color: #000;*/
+            /*text-align: center;*/
+            /*cursor: pointer;*/
+            /*width: 80%;*/
+            /*font-size: 18px;*/
+            /*vertical-align: bottom;*/
+            /*!*position: absolute;*!*/
+            /*bottom: 20px;*/
+            /*left: 10%;*/
+        /*}*/
 
         input[type=checkbox].glyphicon {
             visibility: hidden;
+        }
+        h4{
+
         }
     </style>
 </head>
@@ -96,16 +106,23 @@
 
 
 </section>
+<div id="map" style="display: none"></div>
 
 
 <section id="content" class="container">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+            <button class="eduwellButton" onclick="window.location.href = 'maptest.html'">< Back to Map</button>
+        </div>
+    </div>
     <div class="row">
         <div class="content1 float-left" id="data"></div>
     </div>
 
 
     <!--<script type="text/javascript" src="data/schoolList.json" async></script>-->
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8_Lkt5jSWuogp6GB4IKivTDBzVhVmf8Y&libraries=places"
+            async defer type="text/javascript"></script>
     <script type="text/javascript">
         function load() {
 
@@ -118,40 +135,99 @@
                 for (i = 0; i < datalength; i++) {
                     passdata[i] = localStorage[i]
                 }
+                let colsizes = "";
+                if(datalength < 3){
+                    colsizes = "col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                }
+                else{
+                    colsizes = "col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                }
+
+                //Get Website
+
+
+                service = new google.maps.places.PlacesService(document.getElementById('map'))
+                let website = ""
+
+
+
                 mydata.map((data) => {
                     for (i in passdata) {
                         if (passdata[i] == data.School_Id) {
-                            element.innerHTML += "<div class='col-lg-4 col-md-6 col-sm-12 col-xs-12'>" +
-                                "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 card' id=" + i + "> " +
-                                "<button class='favDel glyphicon glyphicon-remove' type='checkbox' id=" + i +
-                                "></button>" +
-                                "<h4 style='text-align:center; font-size:18pt !important; color:black; font-weight:bold; border-style:outset'>" + data.School_Name + "</h4>" +
-                                "<br><b>Sector:</b> " + data.Sector + "<br><br>" +
-                                "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
-                                "<b>Buildings: </b>" + getBuildingsIcon(data) + "<br>" +
-                                "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>" + 
-                                "<b>Average Annual Investment: </b> " + getInvestIcon(data) + "<br>" + 
-                                "<h4>Special Programs:</h4>" + 
-                                "<b>LGBT Support:</b> " + isLGBT(data) + "<br>" +
-                                "<b>ASPE Support:</b> " + isASPE(data) + "<br>" +
-                                "<p style='text-align:center; font-style:italic'>" + data.Address1
+
+
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            //Get Website and other ma data FLANNERY USE THIS
+                            let Address = data.Address1
                                 + data.Address2 + ", " +
                                 data.Town + " " + data.PPostcode
-                                + '<br>' + data.Phone + "<br><br>" +
-                                 
-                                "<b><a href='" + data.web + "'><button>More Information</button></a>"
-                            $(".favDel").on('click', function (del) {
-                                let id = del.target.id
-                                let cards = $(".card")
-                                console.log(cards)
-                                console.log(id)
-                                for (i = 0; i < cards.length; i++) {
-                                    if (cards[i].id == id) {
-                                        cards[i].parentElement.parentElement.removeChild(cards[i].parentElement)
-                                    }
-                                }
 
+                            let request = {
+                                location: {lat: data.Latitude, lng:data.Longitude},
+                                radius: '500',
+                                keyword: [(data.School_Name + "," + Address)]
+                            }
+
+                            service.nearbySearch(request, (results)=>{
+                                placeId = results[0].place_id
+
+                                service.getDetails({
+                                    placeId: placeId
+                                },(details) => {
+                                    website = details.website
+                                    addDetails()
+                                })
                             })
+                            //addDetails()
+
+                            ////////////////////////////////////
+                            ///
+                            ///
+                            ///
+                            ///
+
+                            function addDetails (){
+                                element.innerHTML += "<div class='" + colsizes + "'>" +
+                                    "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 card sidebar' id=" + i + "> " +
+                                    "<button class='favDel glyphicon glyphicon-remove' type='checkbox' id=" + i +
+                                    "></button>" +
+                                    "<h4 style='text-align:center; height:50px; font-size:18pt !important; color:black; font-weight:bold;'>" + data.School_Name + "</h4>" +
+                                    "<br><b>Sector:</b> " + data.Sector + "<br><br>" +
+                                    "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
+                                    "<b>Buildings: </b>" + getBuildingsIcon(data) + "<br>" +
+                                    "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>" +
+                                    "<b>Average Annual Investment <img style='height:18px' src='http://www.eduwell.ga/EduWell/icons/icons8-About-26.png' title='Investments for capital and  maintenance works, &#013;parent contributions received in advance for &#013;curriculum and camps, school specific programs&#013;and on behalf of the school community.' /> : </b> " + getInvestIcon(data) + "<br>" +
+                                    "<h4>Special Programs:</h4>" +
+                                    "<img src='http://www.eduwell.ga/EduWell/icons/icons8-LGBT Flag-48.png' height='30'>" +
+                                    "<b>Safe Schools (LGBT Support):</b> " + isLGBT(data) + "<br>" +
+                                    "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Exercise-48.png' height='30'>" +
+                                    "<b>ASPE Support:</b> " + isASPE(data) + "<br>" +
+                                    "<p style='text-align:center; font-style:italic'>" + data.Address1
+                                    + data.Address2 + ", " +
+                                    data.Town + " " + data.PPostcode
+                                    + '<br>' + data.Phone + "<br><br>" +
+
+                                    "<b><a href='" + data.web + "'><button class='infobutton eduwellButton'>More Information</button></a>"
+                                $(".favDel").on('click', function (del) {
+                                    let id = del.target.id
+                                    let cards = $(".card")
+                                    console.log(cards)
+                                    console.log(id)
+                                    for (i = 0; i < cards.length; i++) {
+                                        if (cards[i].id == id) {
+                                            cards[i].parentElement.parentElement.removeChild(cards[i].parentElement)
+                                        }
+                                    }
+
+                                })
+                            }
+
                         }
                     }
                 })
@@ -168,7 +244,7 @@
 
 
             function getStudentsIcon(props) {
-let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='19'>";
+                let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students-48.png' height='19'>";
                 if (props.Total > 1) {
                     if (parseInt(props.Total) > 0 & parseInt(props.Total) < 615) {
                         return StudentIcon + "    (" + parseInt(props.Total) + " Students)" +
@@ -197,7 +273,7 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
             }
 
             function getBuildingsIcon(props) {
-			let BuildingsIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='19'>";
+                let BuildingsIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Building-48.png' height='19'>";
                 if (props.BuildingNumber > 1) {
                     if (parseInt(props.BuildingNumber) > 0 & parseInt(props.BuildingNumber) < 17) {
                         return BuildingsIcon + "    (" + parseInt(props.BuildingNumber) + " Buildings)" +
@@ -226,7 +302,7 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
             }
 
             function getFloorAreaIcon(props) {
-			let FloorAreaIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='19'>";
+                let FloorAreaIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Swingset-50.png' height='19'>";
                 if (props.FloorArea > 1) {
                     if (parseInt(props.FloorArea) > 0 & parseInt(props.FloorArea) < 5156) {
                         return FloorAreaIcon + "    (" + parseInt(props.FloorArea) + " Square Metres)" +
@@ -255,7 +331,7 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
             }
 
             function getInvestIcon(props) {
-			let InvestIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='19'>";
+                let InvestIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-AustralianDollar-64.png' height='19'>";
                 if (parseInt(props.Investment) > 1) {
                     if (parseInt(props.Investment) > 0 & parseInt(props.Investment) < 2030218) {
                         return InvestIcon + "    ($" + props.Investment + ")" +
@@ -283,14 +359,14 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
                 }
             }
 
-                function isASPE(props) {
-                    if (props.AS_Phys == "Y") {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Tick-26.png' height='19'> Yes <br>";
-                    } else {
-                        return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Multiply-26.png' height='19'> No <br>";
-                    }
-
+            function isASPE(props) {
+                if (props.AS_Phys == "Y") {
+                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Tick-26.png' height='19'> Yes <br>";
+                } else {
+                    return "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Multiply-26.png' height='19'> No <br>";
                 }
+
+            }
 
 //                function isNone(props) {
 //                 if (!props.LGBT && props.AS_Phys == "N") {
@@ -312,7 +388,12 @@ let StudentIcon = "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Students
 //					}
 //					}
 //					}
-            }
+        }
+		
+		$(document).ready(function(){
+            $("[data-toggle='tooltip']").tooltip();   
+        });
+		
     </script>
 </section>
 
