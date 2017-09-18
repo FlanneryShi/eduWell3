@@ -36,7 +36,7 @@
             margin: 15px;
             padding-top: 40px;
             overflow: auto;
-            height: 700px;
+            height: 1015px;
         }
 
         .favDel {
@@ -49,14 +49,14 @@
             width: auto;
         }
 
-.chart div {
-  font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
-}
+        .chart div {
+            font: 10px sans-serif;
+            background-color: steelblue;
+            text-align: right;
+            padding: 3px;
+            margin: 1px;
+            color: white;
+        }
 
         /*button {*/
             /*border: none;*/
@@ -214,7 +214,7 @@
                                     "<button class='favDel glyphicon glyphicon-remove' type='checkbox' id=" + i +
                                     "></button>" +
                                     "<h4 style='text-align:center; height:50px; font-size:18pt !important; color:black; font-weight:bold;'>" + data.School_Name + "</h4>" +
-                                    "<img style='width:100%;' id='streetviewImg' src='" + streetView_imgURL + "'>" +
+                                    "<img style='height:250px; width:100%;' id='streetviewImg' src='" + streetView_imgURL + "'>" +
                                     "<br><br><b>Sector:</b> " + data.Sector + "<br><br>" +
                                     "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
                                     "<h4>Gender Balance:</h4>" +
