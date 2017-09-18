@@ -49,6 +49,15 @@
             width: auto;
         }
 
+.chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
         /*button {*/
             /*border: none;*/
             /*outline: 0;*/
@@ -196,6 +205,8 @@
                             ///
 
                             function addDetails (){
+                                var widthBoy = parseFloat(Math.round(data.Male/(data.Male+data.Female) * 100) ).toFixed(2) + "%";
+                                var widthGirl = parseFloat(Math.round(data.Female/(data.Male+data.Female) * 100) ).toFixed(2) + "%";
                                 element.innerHTML += "<div class='" + colsizes + "'>" +
                                     "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 card sidebar' id=" + i + "> " +
                                     "<button class='favDel glyphicon glyphicon-remove' type='checkbox' id=" + i +
@@ -205,9 +216,9 @@
                                     "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
                                     "<h4>Gender Balance:</h4>" +
                                     "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Boy-48.png' height='30'>" +
-                                    "<b> Male:</b>" + data.Male + "    (" + parseFloat(Math.round(data.Male/(data.Male+data.Female) * 100) ).toFixed(2) + "%)" + "<br>" +
+                                    "<b>Boy: </b>" + parseInt(data.Male) + "  <div class='chart'><div style='width:" + widthBoy + "'>" + widthBoy + "</div></div><br>" +
                                     "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Girl-64.png' height='30'>" +
-                                    "<b>Female:</b>" + data.Female + "  (" + parseFloat(Math.round(data.Female/(data.Male+data.Female) * 100) ).toFixed(2) + "%)" + "<br><br>" +
+                                    "<b>Girl: </b>" + parseInt(data.Female) + "  <div class='chart'><div style='width:" + widthGirl + "'>" + widthGirl + "</div></div><br>" +
                                     "<b>Buildings: </b>" + getBuildingsIcon(data) + "<br>" +
                                     "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>" +
                                     "<b>Average Annual Investment <img style='height:18px' src='http://www.eduwell.ga/EduWell/icons/icons8-About-26.png' title='Investments for capital and  maintenance works, &#013;parent contributions received in advance for &#013;curriculum and camps, school specific programs&#013;and on behalf of the school community.' /> : </b> " + getInvestIcon(data) + "<br>" +
