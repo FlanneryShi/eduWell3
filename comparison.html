@@ -205,6 +205,8 @@
                             ///
 
                             function addDetails (){
+                                let Address = data.Address1 + data.Address2 + ", " + data.Town + " " + data.PPostcode;
+                                let streetView_imgURL = encodeURI(("https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + data.School_Name.replace("'","") + "," + Address + "&key=AIzaSyDL8mL_M5dy0iux97ExLt8gRrj_NNtbmII"));
                                 var widthBoy = parseFloat(Math.round(data.Male/(data.Male+data.Female) * 100) ).toFixed(2) + "%";
                                 var widthGirl = parseFloat(Math.round(data.Female/(data.Male+data.Female) * 100) ).toFixed(2) + "%";
                                 element.innerHTML += "<div class='" + colsizes + "'>" +
@@ -212,7 +214,8 @@
                                     "<button class='favDel glyphicon glyphicon-remove' type='checkbox' id=" + i +
                                     "></button>" +
                                     "<h4 style='text-align:center; height:50px; font-size:18pt !important; color:black; font-weight:bold;'>" + data.School_Name + "</h4>" +
-                                    "<br><b>Sector:</b> " + data.Sector + "<br><br>" +
+                                    "<img style='width:100%;' id='streetviewImg' src='" + streetView_imgURL + "'>" +
+                                    "<br><br><b>Sector:</b> " + data.Sector + "<br><br>" +
                                     "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
                                     "<h4>Gender Balance:</h4>" +
                                     "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Boy-48.png' height='30'>" +
@@ -227,10 +230,7 @@
                                     "<b>Safe Schools (LGBT Support):</b> " + isLGBT(data) + "<br>" +
                                     "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Exercise-48.png' height='30'>" +
                                     "<b>ASPE Support:</b> " + isASPE(data) + "<br>" +
-                                    "<p style='text-align:center; font-style:italic'>" + data.Address1
-                                    + data.Address2 + ", " +
-                                    data.Town + " " + data.PPostcode
-                                    + '<br>' + data.Phone + "<br><br>" +
+                                    "<p style='text-align:center; font-style:italic'>" + Address + '<br>' + data.Phone + "<br><br>" +
 
                                     "<b><a href='" + data['New.web'] + "'><button class='infobutton eduwellButton'>More Information</button></a>"
                                 $(".favDel").on('click', function (del) {
