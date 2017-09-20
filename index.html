@@ -7,64 +7,84 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <title>EduWell</title>
 
+    <!-- LOAD FONTS -->
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
 
     <!-- Stylesheets -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
-              integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
-              crossorigin=""/>
-        <link rel="stylesheet" href="stylesheets/MarkerCluster.css" />
-        <link rel="stylesheet" href="stylesheets/MarkerCluster.Default.css" />
-        <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+          integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+          crossorigin=""/>
+    <link rel="stylesheet" href="stylesheets/MarkerCluster.css" />
+    <link rel="stylesheet" href="stylesheets/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="sliderengine/amazingslider-1.css">
 
     <!-- script -->
 
     <!-- JQuery -->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="sliderengine/jquery.js"></script>
+    <script src="sliderengine/amazingslider.js"></script>
+    <script src="sliderengine/initslider-1.js"></script>
 
     <!-- Leaflet -->
-        <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
-                integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
-                crossorigin=""></script>
-        <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
-        <script src="scripts/leaflet.markercluster-src.js"></script>
-        <script src="scripts/spin/dist/spin.js"></script>
-        <script src="scripts/leaflet.spin.min.js"></script>
-        <script src="scripts/leaflet.spin.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+            integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+            crossorigin=""></script>
+    <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+    <script src="scripts/leaflet.markercluster-src.js"></script>
+    <script src="scripts/spin/dist/spin.js"></script>
+    <script src="scripts/leaflet.spin.min.js"></script>
+    <script src="scripts/leaflet.spin.min.js"></script>
 
     <!-- Bootstrap from https://getbootstrap.com/ -->
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
     <!-- Easy Auto-complete from http://easyautocomplete.com/ -->
     <!-- JS file -->
-        <script src="scripts/jquery.easy-autocomplete.min.js"></script>
+    <script src="scripts/jquery.easy-autocomplete.min.js"></script>
 
-        <!-- CSS file -->
-        <link rel="stylesheet" href="stylesheets/easy-autocomplete.css">
+    <!-- CSS file -->
+    <link rel="stylesheet" href="stylesheets/easy-autocomplete.css">
 
-        <!-- Additional CSS Themes file - not required-->
-        <link rel="stylesheet" href="stylesheets/easy-autocomplete.themes.css">
+    <!-- Additional CSS Themes file - not required-->
+    <link rel="stylesheet" href="stylesheets/easy-autocomplete.themes.css">
 
     <style>
+        @font-face {
+            font-family: 'josefinsans';
+            src: url('icons/Josefin Sans and Playfair Display/josefinsans/JosefinSans-Regular.ttf');
+        }
+
+        html{
+            background-color: #f5fdf7;
+        }
         h1{
-            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-family: "Oswald", "Helvetica", "Arial", sans-serif;
         }
         body{
             padding: 0 0 0 0;
             margin: 0 0 0 0;
+            background-color: #f5fdf7;
+        }
+        p{
+            line-height: 2;
+            font-size: 14pt;
         }
         #main-search-section{
             align-items: center;
             padding-left: 20%;
             padding-right: 20%;
-            padding-top: 10%;
+            padding-top: 20px;
             /*height: 80VH;*/
             width: 99VW!important;
 
@@ -118,13 +138,13 @@
             background-size: cover;
         }
         #about{
-            height: 100%;
-            background-color: #e8e8d7;
+            /*height: 100%;*/
+            background-color: #f5fdf7;
             font-size: 12pt;
         }
         #title{
             color: #f1f4eb;
-            background-color: rgba(128, 128, 128, 0.39);
+            background-color: rgba(84, 97, 97, 0.3);
             fill-opacity: .5;
             border-radius: 10px;
             padding: 10px;
@@ -132,9 +152,8 @@
             text-align: center;
         }
         #about{
-            padding-right: 20%;
-            padding-left: 20%;
-            padding-top: 20px;
+            padding-right: 10%;
+            padding-left: 10%;
         }
         #about_head{
             text-align: center;
@@ -147,6 +166,13 @@
         #splashbox{
             height:auto;
             position: relative;
+        }
+        #about_content{
+            background-color: white;
+            margin-top: 20px;
+            padding: 30 30 30 30;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            margin-bottom: 60px;
         }
 
     </style>
@@ -172,16 +198,13 @@
             <span class="sr-only">Toggle Navigation</span>
         </div>
 
-        </button>
-
-
     </section>
 
     <section id="content" class="container">
         <div class="row" id="main-search-section">
             <div id="title" style="background-color:saddlebrown">
                 <div class="splashbox">
-                <img src='http://www.eduwell.ga/EduWell/icons/eduwelllogo.png' id="splash">
+                    <img src='http://www.eduwell.ga/EduWell/icons/eduwelllogovic_2_M.png' id="splash">
                 </div>
                 <h1>Find a Primary School, Find Your Child's Future</h1>
             </div>
@@ -209,32 +232,34 @@
                     </div>
                     <div class="row" id="schoolTypes">
 
-                        <button id="advanced_options" data-toggle="collapse" data-target="#demo">Advanced Options</button>
+                        <button id="advanced_options" data-toggle="collapse" data-target="#demo">Map Preferences</button>
 
                         <div id="demo" class="collapse">
                             <div class="col-lg-4 col-m-4 col-sm-4 col-xs-4">
-                                <h5>Search Radius</h4>
+                                <h5>Nearby Schools Radius</h4>
                                     <input id="searchRadius" type="number" id="replyNumber" min="0" max="15" data-bind="value:replyNumber" value="3" />
                                     km
+                                    <br><br>
+                                    <input id = "servicesCheck" type = "checkbox" checked> Nearby Community Services
                             </div>
                             <div class="col-lg-4 col-m-4 col-sm-4 col-xs-4">
-                                <h5>Program to highlight</h4>
+                                <h5>Special Programs Available</h4>
                                     <input class="mainoption" id="LGBTCheck" type="checkbox" checked> <img src="http://www.eduwell.ga/EduWell/icons/icons8-LGBT Flag-48.png" height="30">Safe Schools (LGBT Support)
                                     <br>
                                     <input class="mainoption" id="ASPECheck" type="checkbox" checked> <img src="http://www.eduwell.ga/EduWell/icons/icons8-Exercise-48.png" height="30">After School Physical Education
 
                                     <!--<select id="programs" class="form-control" type="select" data-toggle="dropdown">-->
-                                        <!--<option>None</option>-->
-                                        <!--<option>Safe Schools (LGBT Support)</option>-->
-                                        <!--<option>After School Physical Education</option>-->
+                                    <!--<option>None</option>-->
+                                    <!--<option>Safe Schools (LGBT Support)</option>-->
+                                    <!--<option>After School Physical Education</option>-->
                                     <!--</select>-->
                             </div>
                             <div class="col-lg-4 col-m-4 col-sm-4 col-xs-4">
-                                <h5>Statistical data</h5>>
-                                    <select id="stats" class="form-control" type="select" data-toggle="dropdown">
-                                        <option>None</option>
-                                        <option>Bullying Rate</option>
-                                    </select>
+                                <h5>Statistical data</h5>
+                                <select id="stats" class="form-control" type="select" data-toggle="dropdown">
+                                    <option>None</option>
+                                    <option>Bullying Rate</option>
+                                </select>
                             </div>
                         </div>
 
@@ -247,22 +272,57 @@
     </section>
     <section id="about">
 
-        <div id="about_head" class="col-lg-4 col-m-6 col-sm-12 col-xs-12"><img src="https://static.pexels.com/photos/159823/kids-girl-pencil-drawing-159823.jpeg" style="width:100%"> </div>
-        <div id="about_head" class="col-lg-6 col-m-6 col-sm-12 col-xs-12">Eduwell trust parents to know what is best for their children...</div>
-        <div id="about_content" class="col-lg-6 col-m-6 col-sm-12 col-xs-12">
-
-        Children spend the large part of their developmental years going to school.
-        Parents, naturally want their kids to be in an environment that is nurturing and supportive of their wellbeing.
-        Why then is it so easy to find information on a schools academic performance but so hard to to learn about the other things that really matter?
-        </div>
         <div id="about_content" class="col-lg-12 col-m-12 col-sm-12 col-xs-12">
-        EduWell understands that there are many factors important to a child's wellbeing,
-        and that these factors change depending on the child, their parents and their circumstances.
-        That is why we have developed a tool to allow parents to explore the schools areas in which to raise their child.
-        EduWell puts the power in the parents hands to make their own decisions and decide what is important to them.
-        EduWell doesn't rely on hidden ranking systems or biased information.
-        It pulls together high quality data from a variety of sources and uses them to paint a picture about what options are available for your child.
+            <h1 style="text-align: center; font-family: josefinsans)">EduWell believes parents know what is best for their children...</h1>
+
+            <!-- Insert to your webpage where you want to display the slider -->
+            <div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:900px;margin:0px auto 56px;">
+                <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
+                    <ul class="amazingslider-slides" style="display:none;">
+                        <li>
+                            <img src="http://www.eduwell.ga/EduWell/icons/Writing_S.png" alt="EduWellVIC. Find a school, find a future." title="EduWellVIC. Find a school, find a future." />
+                        </li>
+                        <li>
+                            <img src="http://www.eduwell.ga/EduWell/icons/Wellbeing_S.png" alt="EduWellVIC cares about your child&apos;s overall wellbeing." title="EduWellVIC cares about your child&apos;s overall wellbeing." />
+                        </li>
+                        <li>
+                            <img src="http://www.eduwell.ga/EduWell/icons/WellbeingChar_S.png" alt="Description for 3rd." title="Description for 3rd." />
+                        </li>
+                    </ul>
+                    <ul class="amazingslider-thumbnails" style="display:none;">
+                        <li><img src="http://www.eduwell.ga/EduWell/icons/Writing_S-tn.png" alt="EduWellVIC. Find a school, find a future." title="EduWellVIC. Find a school, find a future." /></li>
+                        <li><img src="http://www.eduwell.ga/EduWell/icons/Wellbeing_S-tn.png" alt="EduWellVIC cares about your child&apos;s overall wellbeing." title="EduWellVIC cares about your child&apos;s overall wellbeing." /></li>
+                        <li><img src="http://www.eduwell.ga/EduWell/icons/WellbeingChar_S-tn.png" alt="Description for 3rd." title="Description for 3rd." /></li>
+                    </ul>
+                    <div class="amazingslider-engine"><a href="http://amazingslider.com" title="Responsive JavaScript Image Slider">Responsive JavaScript Image Slider</a></div>
+                </div>
+            </div>
+            <!-- End of body section HTML codes -->
+
+
+            <p>
+                <br>
+                Children spend the large part of their developmental years going to school.
+                Parents, naturally want their kids to be in an environment that is nurturing and supportive of their wellbeing.<br><br>
+                Why then is it so easy to find information on a schools academic performance but so hard to to learn about the other things that really matter?
+                <!--</div>-->
+                <br><br>
+                EduWell understands that there are many factors important to a child's wellbeing,
+                and that these factors change depending on the child, their parents and their circumstances. <br><br>
+
+                That is why we have developed a tool to allow parents to explore the schools areas in which to raise their child.<br><br>
+
+                <p style="text-align: center; font-style: italic">EduWell puts the power in the parents hands to make their own decisions and decide what is important to them.</p>
+                <br><br>
+                <p>
+                EduWell doesn't rely on hidden ranking systems or biased information.
+                It pulls together high quality data from a variety of sources and uses them to paint a picture about what options are available for your child.
+                </p>
+            </p>
+
         </div>
+
+
     </section>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8_Lkt5jSWuogp6GB4IKivTDBzVhVmf8Y&libraries=places&callback=initAutocomplete"
             async defer type="text/javascript"></script>
