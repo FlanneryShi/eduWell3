@@ -19,8 +19,8 @@
             overflow: scroll;
             -webkit-overflow-scrolling: touch;
             margin-bottom: 30px;
-            padding-left: 10%;
-            padding-right: 10%;
+            /*padding-left: 10%;*/
+            /*padding-right: 10%;*/
         }
 
         .float-left .card {
@@ -36,7 +36,7 @@
             margin: 15px;
             padding-top: 40px;
             overflow: auto;
-            height: 965px;
+            height: 975px;
         }
 
         .favDel {
@@ -81,6 +81,10 @@
         h4{
 
         }
+        .extrapad{
+            padding-left: 5%;
+            padding-right: 5%;
+        }
     </style>
 </head>
 
@@ -115,7 +119,7 @@
 
 
 </section>
-<div id="map" style="display: none"></div>
+//<div id="map" style="display: none"></div>
 
 
 <section id="content" class="container">
@@ -132,10 +136,9 @@
     <!--<script type="text/javascript" src="data/schoolList.json" async></script>-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8_Lkt5jSWuogp6GB4IKivTDBzVhVmf8Y&libraries=places"
             async defer type="text/javascript"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    //<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+
         function load() {
 
             let element = document.getElementById('data');
@@ -149,7 +152,7 @@
                 }
                 let colsizes = "";
                 if(datalength < 3){
-                    colsizes = "col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                    colsizes = "col-lg-6 col-md-6 col-sm-12 col-xs-12 extrapad"
                 }
                 else{
                     colsizes = "col-lg-4 col-md-6 col-sm-12 col-xs-12"
@@ -158,12 +161,13 @@
                 //Get Website
 
 
-                service = new google.maps.places.PlacesService(document.getElementById('map'))
-                let website = ""
+                //service = new google.maps.places.PlacesService(document.getElementById('map'))
+                //let website = ""
 
 
 
                 mydata.map((data) => {
+                    x = 1;
                     for (i in passdata) {
                         if (passdata[i] == data.School_Id) {
 
@@ -176,26 +180,26 @@
                             ///
                             ///
                             //Get Website and other ma data FLANNERY USE THIS
-                            let Address = data.Address1
-                                + data.Address2 + ", " +
-                                data.Town + " " + data.PPostcode
+                            //let Address = data.Address1
+                            //    + data.Address2 + ", " +
+                            //    data.Town + " " + data.PPostcode
 
-                            let request = {
-                                location: {lat: data.Latitude, lng:data.Longitude},
-                                radius: '500',
-                                keyword: [(data.School_Name + "," + Address)]
-                            }
+                           // let request = {
+                           //     location: {lat: data.Latitude, lng:data.Longitude},
+                           //     radius: '500',
+                            //    keyword: [(data.School_Name + "," + Address)]
+                           // }
 
-                            service.nearbySearch(request, (results)=>{
-                                placeId = results[0].place_id
+                         //   service.nearbySearch(request, (results)=>{
+                         //       placeId = results[0].place_id
 
-                                service.getDetails({
-                                    placeId: placeId
-                                },(details) => {
-                                    website = details.website
-                                    addDetails()
-                                })
-                            })
+                         //       service.getDetails({
+                         //           placeId: placeId
+                          //      },(details) => {
+                          //          website = details.website
+                          //          addDetails()
+                          //      })
+                          //  })
                             //addDetails()
 
                             ////////////////////////////////////
@@ -204,24 +208,31 @@
                             ///
                             ///
 
-                            function addDetails (){
+                         //   function addDetails (){
                                 let Address = data.Address1 + data.Address2 + ", " + data.Town + " " + data.PPostcode;
                                 let streetView_imgURL = encodeURI(("https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + data.School_Name.replace("'","") + "," + Address + "&key=AIzaSyDL8mL_M5dy0iux97ExLt8gRrj_NNtbmII"));
                                 var widthBoy = parseFloat(Math.round(data.Male/(data.Male+data.Female) * 100) ).toFixed(2) + "%";
                                 var widthGirl = parseFloat(Math.round(data.Female/(data.Male+data.Female) * 100) ).toFixed(2) + "%";
+
+                                let classSize = "Not Available"
+                                if(data.AverageClassSize !== undefined && data.AverageClassSize !== null){
+                                    classSize = parseInt(data.AverageClassSize) + " students"
+                                }
+
                                 element.innerHTML += "<div class='" + colsizes + "'>" +
-                                    "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 card sidebar' id=" + i + "> " +
-                                    "<button class='favDel glyphicon glyphicon-remove' type='checkbox' id=" + i +
+                                    "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 card sidebar' id=" + x + "> " +
+                                    "<button class='favDel glyphicon glyphicon-remove' type='checkbox' id=" + x +
                                     "></button>" +
                                     "<h4 style='text-align:center; height:50px; font-size:18pt !important; color:black; font-weight:bold;'>" + data.School_Name + "</h4>" +
                                     "<img style='height:21%; width:100%;' id='streetviewImg' src='" + streetView_imgURL + "'>" +
                                     "<br><br><b>Sector:</b> " + data.Sector + "<br><br>" +
                                     "<b>Students enrolled: </b>" + getStudentsIcon(data) + "<br>" +
+                                        "<b>Average Class Size: </b>" + classSize + "<br><br>" +
                                     "<h4>Gender Balance:</h4>" +
                                     "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Boy-48.png' height='30'>" +
-                                    "<b>Boy: </b>" + parseInt(data.Male) + "  <div class='chart'><div style='width:" + widthBoy + "'>" + widthBoy + "</div></div><br>" +
+                                    "<b>Male: </b>" + parseInt(data.Male) + "  <div class='chart'><div style='width:" + widthBoy + "'>" + widthBoy + "</div></div><br>" +
                                     "<img src='http://www.eduwell.ga/EduWell/icons/icons8-Girl-64.png' height='30'>" +
-                                    "<b>Girl: </b>" + parseInt(data.Female) + "  <div class='chart'><div style='width:" + widthGirl + "'>" + widthGirl + "</div></div><br>" +
+                                    "<b>Female: </b>" + parseInt(data.Female) + "  <div class='chart'><div style='width:" + widthGirl + "'>" + widthGirl + "</div></div><br>" +
                                     "<b>Buildings: </b>" + getBuildingsIcon(data) + "<br>" +
                                     "<b>Total building area: </b>" + getFloorAreaIcon(data) + "<br>" +
                                     "<b>Average Annual Investment <img style='height:18px' src='http://www.eduwell.ga/EduWell/icons/icons8-About-26.png' title='Investments for capital and  maintenance works, &#013;parent contributions received in advance for &#013;curriculum and camps, school specific programs&#013;and on behalf of the school community.' /> : </b> " + getInvestIcon(data) + "<br>" +
@@ -240,15 +251,17 @@
                                     console.log(id)
                                     for (i = 0; i < cards.length; i++) {
                                         if (cards[i].id == id) {
+                                            console.log()
                                             cards[i].parentElement.parentElement.removeChild(cards[i].parentElement)
                                         }
                                     }
-
                                 })
+
+                                x = x + 1
                             }
 
                         }
-                    }
+              //      }
                 })
             })
 
