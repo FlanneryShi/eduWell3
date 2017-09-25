@@ -116,10 +116,10 @@
     </div>
 
     </button>
-
+    <div id="map" hidden></div>
 
 </section>
-//<div id="map" style="display: none"></div>
+
 
 
 <section id="content" class="container">
@@ -134,9 +134,9 @@
 
 
     <!--<script type="text/javascript" src="data/schoolList.json" async></script>-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8_Lkt5jSWuogp6GB4IKivTDBzVhVmf8Y&libraries=places"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqwXeBF0eH49temHUaJR49atlSoTgBPzo&libraries=places"
             async defer type="text/javascript"></script>
-    //<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 
         function load() {
@@ -172,43 +172,49 @@
                         if (passdata[i] == data.School_Id) {
 
 
-                            ///
-                            ///
-                            ///
-                            ///
-                            ///
-                            ///
-                            ///
-                            //Get Website and other ma data FLANNERY USE THIS
-                            //let Address = data.Address1
-                            //    + data.Address2 + ", " +
-                            //    data.Town + " " + data.PPostcode
+//                            Get Website and other ma data FLANNERY USE THIS
+                            let Address = data.Address1
+                                + data.Address2 + ", " +
+                                data.Town + " " + data.PPostcode
 
-                           // let request = {
-                           //     location: {lat: data.Latitude, lng:data.Longitude},
-                           //     radius: '500',
-                            //    keyword: [(data.School_Name + "," + Address)]
-                           // }
+                            let request = {
+                                location: {lat: data.Latitude, lng:data.Longitude},
+                                radius: '500',
+                                keyword: [(data.School_Name + "," + Address)]
+                            }
 
-                         //   service.nearbySearch(request, (results)=>{
-                         //       placeId = results[0].place_id
+                            try {
+                                service = new google.maps.places.PlacesService(document.getElementById('map'))
+                                service.nearbySearch(request, (results) => {
+                                    placeId = results[0].place_id
 
-                         //       service.getDetails({
-                         //           placeId: placeId
-                          //      },(details) => {
-                          //          website = details.website
-                          //          addDetails()
-                          //      })
-                          //  })
-                            //addDetails()
+                                    service.getDetails({
+                                        placeId: placeId
+                                    }, (details) => {
+                                        website = details.website
+                                        console.log(website)
+                                        if (website == undefined || website == null) {
+                                            website = "N/A"
+                                        }
+                                        addDetails()
+                                    })
+                                })
+                            }
+                            catch (err){
+                                console.log('error')
+                                console.log(err)
+                                website = data.NewWeb
+                                if(website == undefined || website == null)
+                                {
+                                website = "N/A"
+                                }
+                                addDetails()
+                            }
 
-                            ////////////////////////////////////
-                            ///
-                            ///
-                            ///
-                            ///
 
-                         //   function addDetails (){
+
+
+                            function addDetails (){
                                 let Address = data.Address1 + data.Address2 + ", " + data.Town + " " + data.PPostcode;
                                 let streetView_imgURL = encodeURI(("https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + data.School_Name.replace("'","") + "," + Address + "&key=AIzaSyDL8mL_M5dy0iux97ExLt8gRrj_NNtbmII"));
                                 var widthBoy = parseFloat(Math.round(data.Male/(data.Male+data.Female) * 100) ).toFixed(2) + "%";
@@ -243,7 +249,7 @@
                                     "<b>ASPE Support:</b> " + isASPE(data) + "<br>" +
                                     "<p style='text-align:center; font-style:italic'>" + Address + '<br>' + data.Phone + "<br><br>" +
 
-                                    "<b><a href='" + data['New.web'] + "'><button class='infobutton eduwellButton'>More Information</button></a>"
+                                    "<b><a href='" + website + "' target='_blank'><button class='infobutton eduwellButton'>More Information</button></a>"
                                 $(".favDel").on('click', function (del) {
                                     let id = del.target.id
                                     let cards = $(".card")
@@ -261,7 +267,7 @@
                             }
 
                         }
-              //      }
+                    }
                 })
             })
 
@@ -400,26 +406,7 @@
 
             }
 
-//                function isNone(props) {
-//                 if (!props.LGBT && props.AS_Phys == "N") {
-//                        return "None Available"
-//                    } else {
-//                        return ""
-//                    }
-//                }
 //
-//
-//					for(var i = 0;i < mydata.length; i++)
-//					{
-//					for(j in passdata)
-//					{
-//					if(passdata[j] == mydata[i].School_Id)
-//					{
-//
-//					element.innerHTML = element.innerHTML + "<div class='card' id="+i+">"+ mydata[i].School_Name + " - " + mydata[i].Sector +"</div>";
-//					}
-//					}
-//					}
 
 }	
 
